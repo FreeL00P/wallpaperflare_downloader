@@ -101,7 +101,7 @@ def safeFilename(filename, replace=''):
         filename
     )
 def main():
-    url = 'https://www.wallpaperflare.com/search?wallpaper='
+    base_url = 'https://www.wallpaperflare.com/search?wallpaper='
     try:
         start_page = int(input("输入起始页码："))
         end_page = int(input("输入结束页码："))
@@ -123,7 +123,8 @@ def main():
 
     # 将URL添加到队列
     for i in range(start_page, end_page + 1):
-        url = url + quote(wallpaper_key) + '&page=' + str(i)
+        url = base_url + quote(wallpaper_key) + '&page=' + str(i)
+        print("Start URL: " + url)
         url_queue.put(url)
         if  i==end_page+1:
             exit()
